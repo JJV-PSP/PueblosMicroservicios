@@ -7,17 +7,20 @@ app2 = Flask(__name__)
 def get_meteo(municipioid):
 
     try:
-        url = f"https://www.el-tiempo.net/api/json/v1/provincias/08/municipios/08022"
-
-        response = requests.get(url)
+        url = f"https://www.el-tiempo.net/api/json/v2/provincias/01/municipios/{municipioid}"
+        print(url)
+        response = jsonify(requests.get(url))
+       
+        print(response)
+        #print(jsonify(data))
         if response.status_code != 200:
             return jsonify({"error": "No se pudo obtener el clima"}), 500
-
-        data = response.json()
-        return jsonify(data)
+        
+        
+        return jsonify(response)
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 if __name__ == '__main__':
-    app2.run(port=5001)
+    app2.run(port=5001,debug=True)
     
