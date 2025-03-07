@@ -1,0 +1,37 @@
+# docker-compose -f docker-compose.yml -p servicios up -d
+# docker-compose -p mc down
+
+version: '3.8'
+
+networks:
+  servicios_puente:
+    driver: bridge
+
+services:
+  servicio1:
+    build: ./servicio1
+    ports:
+      - "5000:5000"
+    networks:
+      - servicios_puente
+
+  servicio2:
+    build: ./servicio2
+    ports:
+      - "5001:5001"
+    networks:
+      - servicios_puente
+
+  servicio3:
+    build: ./servicio3
+    ports:
+      - "5002:5002"
+    networks:
+      - servicios_puente
+
+  servicio4:
+    build: ./servicio4
+    ports:
+      - "5003:5003"
+    networks:
+      - servicios_puente
