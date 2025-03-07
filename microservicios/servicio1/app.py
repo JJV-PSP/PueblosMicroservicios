@@ -4,10 +4,10 @@ import json
 app1 = Flask(__name__)
 
 def cargar_datos():
-    with open('venv1/municipio.json', 'r', encoding='utf-8') as file:
+    with open('municipio.json', 'r', encoding='utf-8') as file:
         return json.load(file)  
 
-@app1.route('/<int:municipioid>/geo', methods=['GET'])
+@app1.route('/<string:municipioid>/geo', methods=['GET'])
 def get_geo(municipioid):
     datos = cargar_datos()
 
@@ -17,5 +17,5 @@ def get_geo(municipioid):
         return jsonify({"error": "Municipio no encontrado"}), 404
 
 if __name__ == '__main__':
-    app1.run(port=5000)
+    app1.run(host='0.0.0.0', port=5000)
 

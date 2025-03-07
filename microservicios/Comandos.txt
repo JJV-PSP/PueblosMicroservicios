@@ -1,0 +1,16 @@
+CREAR IMAGENES
+-------------------------------------
+docker build -t servicio1 ./servicio1
+docker build -t servicio2 ./servicio2
+docker build -t servicio3 ./servicio3
+docker build -t servicio4 ./servicio4
+
+LANZAR SERVICIOS 
+(Hemos intentado conseguir que el servicio 4 acceda a los otros servicios, por eso se le asigna una red al lanzar,
+pero no hemos logrado hacer que permita la conexión. Sabemos que se puede conectar porque sale la ventana de error de conexiones,
+y en local funciona, así que el problema debe de estar en nuestra red de docker.)
+------------------------------------------------------
+docker run -it --network mi_red -p 5000:5000 servicio1
+docker run -it --network mi_red -p 5001:5001 servicio2
+docker run -it --network mi_red -p 5002:5002 servicio3
+docker run -it --network mi_red -p 5003:5003 servicio4

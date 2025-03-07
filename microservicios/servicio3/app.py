@@ -4,7 +4,7 @@ import json
 app3 = Flask(__name__)
 
 def cargar_datos():
-    with open('venv3/demo.json', 'r', encoding='utd-8') as file:
+    with open('demo.json', 'r', encoding='utf-8') as file:
         return json.load(file)
 
 @app3.route('/<string:municipioid>/demo', methods=['GET'])
@@ -15,7 +15,7 @@ def get_demo(municipioid):
     if datos.get("municipioid") == municipioid:
         return jsonify(datos)
     else:
-        return jsonify({"error"})
+        return jsonify({"error":"Datos demográficos no encontrados."})
     
 if __name__ == '__main__':
-    app3.run(port=5002)
+    app3.run(host='0.0.0.0', port=5002)
